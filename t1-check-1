@@ -1,0 +1,65 @@
+#!/bin/bash
+
+# t1-check-1
+
+# Author:  Murray Saul
+# Date:    April 28, 2021
+# Modified by:	Jason Carman
+# Modified:	December 27, 2023
+# Purpose: Check that user was able to connect to their
+#          Matrix account
+#
+# License: LGPL version 3
+# Link:    https://www.gnu.org/licenses/lgpl.html
+#
+
+clear
+
+. /home/jason.carman/duedates.txt
+
+weekDueDate=$t01
+
+src=$0
+
+export src
+
+/home/jason.carman/tutorials/source
+
+if [ $(date +%s) -le $weekDueDate ]
+then
+   label=""
+else
+   label="LATE "
+fi
+
+echo "${label}Tutorial1-check-1 Completed for: $USER" | mail -s "${label}Tutorial1-Check-1 Successfully Completed" $USER@myseneca.ca  2> /dev/null
+echo "${label}Tutorial1-check-1 Completed for: $USER" | mail -s "${label}Tutorial1-Check-1 Successfully Completed" $USER@senecapolytechnic.ca  2> /dev/null
+
+if [ $(date +%s) -le $weekDueDate ]
+then
+   echo
+   echo "Congratulations!"
+   echo
+   echo  "You have passed the t1-check-1 script"
+   echo  "This means that you have successfully logged into your Matrix account. :)"
+   echo
+   echo  "An email has been sent to your Seneca Polytechnic email account"
+   echo  "for confirmation, keep this email for proof until the end of"
+   echo  "this semester."
+   echo
+   echo  "You can proceed with this tutorial."
+   echo
+else
+   echo
+   echo  "You have passed the t1-check-1 script"
+   echo  "This means that you have successfully logged into your Matrix account."
+   echo
+   echo  "UNFORTUNATELY, THE DUE DATE FOR THIS TUTORIAL HAS PASSED"
+   echo  "SO YOU CANNOT RECEIVE MARKS FOR THIS TUTORIAL"
+   echo
+   echo  "An email of your LATE submission has been sent to your"
+   echo  "Seneca Polytechnic email account"
+   echo
+   echo  "You can proceed with this tutorial."
+   echo
+fi
